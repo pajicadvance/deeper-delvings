@@ -1,0 +1,16 @@
+{
+  "placement": {
+    "type": "minecraft:random_spread",
+    "frequency": 0.004,
+    "frequency_reduction_method": "default",
+    "salt": 2047731903,
+    "separation": 0,
+    "spacing": 1
+  },
+  "structures": [
+    {
+      "structure": "deeper_delvings:warped_mineshaft",
+      "weight": 1
+    }
+  ]
+}

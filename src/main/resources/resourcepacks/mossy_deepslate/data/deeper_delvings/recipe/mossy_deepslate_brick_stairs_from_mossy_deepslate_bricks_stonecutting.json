@@ -1,0 +1,7 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": "deeper_delvings:mossy_deepslate_bricks",
+  "result": {
+    "id": "deeper_delvings:mossy_deepslate_brick_stairs"
+  }
+}

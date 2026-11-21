@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "deeper_delvings:item/fiery_spider_spawn_egg"
+  }
+}

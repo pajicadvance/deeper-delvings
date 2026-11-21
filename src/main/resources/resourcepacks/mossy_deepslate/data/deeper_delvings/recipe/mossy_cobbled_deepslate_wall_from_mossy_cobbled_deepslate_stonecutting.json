@@ -1,0 +1,7 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": "deeper_delvings:mossy_cobbled_deepslate",
+  "result": {
+    "id": "deeper_delvings:mossy_cobbled_deepslate_wall"
+  }
+}

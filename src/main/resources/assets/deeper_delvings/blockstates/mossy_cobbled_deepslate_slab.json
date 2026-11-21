@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "deeper_delvings:block/mossy_cobbled_deepslate_slab"
+    },
+    "type=double": {
+      "model": "deeper_delvings:block/mossy_cobbled_deepslate"
+    },
+    "type=top": {
+      "model": "deeper_delvings:block/mossy_cobbled_deepslate_slab_top"
+    }
+  }
+}

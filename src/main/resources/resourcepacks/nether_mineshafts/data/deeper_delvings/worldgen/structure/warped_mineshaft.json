@@ -1,0 +1,7 @@
+{
+  "type": "deeper_delvings:nether_mineshaft",
+  "biomes": "minecraft:warped_forest",
+  "variant": "warped",
+  "spawn_overrides": {},
+  "step": "underground_structures"
+}
