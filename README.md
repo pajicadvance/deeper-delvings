@@ -10,6 +10,8 @@ Mineshafts that start at deepslate levels are replaced with deepslate mineshafts
 - TNT minecarts sitting on the rails.
 - Twice as many chest minecarts, with vanilla mineshaft loot plus a small balanced extra pool.
 
+![warped_mineshaft](https://raw.githubusercontent.com/pajicadvance/deeper-delvings/refs/heads/main/images/deepslate_mineshaft.png)
+
 ## Nether mineshafts
 
 Crimson and warped mineshafts generate underneath the lava sea in crimson and warped forests.
@@ -20,17 +22,27 @@ Crimson and warped mineshafts generate underneath the lava sea in crimson and wa
 - Unique chest minecart loot.
 - Crimson mineshafts have piglin miners and only spawn piglins naturally, while warped mineshafts have endermen and only spawn endermen naturally.
 
+![crimson_mineshaft](https://raw.githubusercontent.com/pajicadvance/deeper-delvings/refs/heads/main/images/crimson_mineshaft.png)
+
+![warped_mineshaft](https://raw.githubusercontent.com/pajicadvance/deeper-delvings/refs/heads/main/images/warped_mineshaft.png)
+
 ## Deepslate dungeons
 
 Dungeons at deepslate levels are built from cobbled deepslate and mossy cobbled deepslate, and their chests hold vanilla dungeon loot plus a small balanced extra pool.
+
+![warped_mineshaft](https://raw.githubusercontent.com/pajicadvance/deeper-delvings/refs/heads/main/images/deepslate_dungeon.png)
 
 ## Fiery Spider
 
 A cave spider variant with a glowing fiery abdomen. It sets its target on fire instead of poisoning it and sets the ground on fire when it dies. It spawns from spawners in Nether mineshafts and replaces spiders in a configurable list of biomes, which contains the Inferno biome from CliffTree by default.
 
+![warped_mineshaft](https://raw.githubusercontent.com/pajicadvance/deeper-delvings/refs/heads/main/images/fiery_spider.png)
+
 ## Mossy Deepslate
 
 Mossy deepslate counterparts of the vanilla mossy blocks: mossy cobbled deepslate and mossy deepslate bricks with their stairs, slabs and walls, and infested mossy deepslate bricks. Crafted like their vanilla counterparts, using cobbled deepslate or deepslate bricks with vines or moss blocks, and supported by the stonecutter.
+
+![warped_mineshaft](https://raw.githubusercontent.com/pajicadvance/deeper-delvings/refs/heads/main/images/mossy_deepslate.png)
 
 ## Other features
 
