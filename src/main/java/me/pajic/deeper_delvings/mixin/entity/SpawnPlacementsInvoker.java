@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.gen.Invoker;
 public interface SpawnPlacementsInvoker {
 
     @Invoker("register")
-    static <T extends Mob> void ac$register(
+    static <T extends Mob> void dd$callRegister(
             EntityType<T> type,
             SpawnPlacementType placementType,
             Heightmap.Types heightmapType,

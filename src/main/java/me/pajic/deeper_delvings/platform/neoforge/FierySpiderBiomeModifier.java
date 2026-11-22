@@ -4,7 +4,6 @@ package me.pajic.deeper_delvings.platform.neoforge;
 
 /*import com.mojang.serialization.MapCodec;
 import me.pajic.deeper_delvings.entity.FierySpiderSpawns;
-import me.pajic.deeper_delvings.entity.ModEntities;
 import net.minecraft.core.Holder;
 import net.minecraft.util.random.Weighted;
 import net.minecraft.world.entity.MobCategory;
@@ -32,7 +31,7 @@ public class FierySpiderBiomeModifier implements BiomeModifier {
 	//?} else {
 	/^public void modify(@NotNull Holder<Biome> biome, @NotNull Phase phase, @NotNull ModifiableBiomeInfo.BiomeInfo.Builder builder) {
 	^///?}
-		if (phase != Phase.REMOVE || !FierySpiderSpawns.isEnabled() || !biome.is(ModEntities.INFERNO)) return;
+		if (phase != Phase.REMOVE || biome.unwrapKey().filter(FierySpiderSpawns::isReplacementBiome).isEmpty()) return;
 		MobSpawnSettingsBuilder spawns = builder.getMobSpawnSettings();
 		for (MobCategory category : MobCategory.values()) {
 			List<Weighted<SpawnerData>> spiders = new ArrayList<>();

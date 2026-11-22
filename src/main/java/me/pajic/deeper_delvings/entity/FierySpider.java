@@ -4,7 +4,6 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.DifficultyInstance;
-import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntitySpawnReason;
 import net.minecraft.world.entity.EntityType;
@@ -40,10 +39,10 @@ public class FierySpider extends Spider {
     }
 
     @Override
-    public void die(@NotNull DamageSource source) {
-        boolean alreadyDead = isRemoved() || dead;
-        super.die(source);
-        if (alreadyDead || !(level() instanceof ServerLevel level) || !level.getGameRules().get(GameRules.MOB_GRIEFING)) return;
+    protected void tickDeath() {
+        boolean wasRemoved = isRemoved();
+        super.tickDeath();
+        if (wasRemoved || !isRemoved() || !(level() instanceof ServerLevel level) || !level.getGameRules().get(GameRules.MOB_GRIEFING)) return;
         BlockPos pos = blockPosition();
         if (BaseFireBlock.canBePlacedAt(level, pos, Direction.UP)) {
             level.setBlockAndUpdate(pos, BaseFireBlock.getState(level, pos));

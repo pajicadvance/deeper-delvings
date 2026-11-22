@@ -1,15 +1,17 @@
 package me.pajic.deeper_delvings.entity;
 
 import me.pajic.deeper_delvings.DeeperDelvings;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.util.random.Weighted;
 //~ if <26.2 'entity.EntityTypes;' -> 'entity.EntityType;'
 import net.minecraft.world.entity.EntityTypes;
+import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.MobSpawnSettings;
 
 public class FierySpiderSpawns {
 
-    public static boolean isEnabled() {
-        return DeeperDelvings.CONFIG.content.fierySpider.get();
+    public static boolean isReplacementBiome(ResourceKey<Biome> biome) {
+        return DeeperDelvings.CONFIG.modIntegration.fierySpiderBiomes.get().contains(biome.identifier());
     }
 
     public static boolean isSpider(Weighted<MobSpawnSettings.SpawnerData> spawn) {

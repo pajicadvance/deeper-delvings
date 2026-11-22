@@ -1,6 +1,6 @@
 package me.pajic.deeper_delvings.mixin.registry;
 
-import me.pajic.deeper_delvings.worldgen.SpawnRateMultipliers;
+import me.pajic.deeper_delvings.worldgen.spawnrate.SpawnRateMultipliers;
 import net.minecraft.core.Holder;
 import net.minecraft.core.MappedRegistry;
 import net.minecraft.core.RegistrationInfo;

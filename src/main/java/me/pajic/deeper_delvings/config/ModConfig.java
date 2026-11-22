@@ -5,12 +5,21 @@ import me.fzzyhmstrs.fzzy_config.annotations.RequiresAction;
 import me.fzzyhmstrs.fzzy_config.annotations.Version;
 import me.fzzyhmstrs.fzzy_config.config.Config;
 import me.fzzyhmstrs.fzzy_config.config.ConfigSection;
+import me.fzzyhmstrs.fzzy_config.validation.collection.ValidatedList;
+import me.fzzyhmstrs.fzzy_config.validation.collection.ValidatedMap;
+import me.fzzyhmstrs.fzzy_config.validation.minecraft.ValidatedIdentifier;
+import me.fzzyhmstrs.fzzy_config.validation.misc.ValidatedAny;
 import me.fzzyhmstrs.fzzy_config.validation.misc.ValidatedBoolean;
 import me.fzzyhmstrs.fzzy_config.validation.number.ValidatedFloat;
 import me.fzzyhmstrs.fzzy_config.validation.number.ValidatedInt;
 import me.fzzyhmstrs.fzzy_config.validation.number.ValidatedNumber;
 import me.pajic.deeper_delvings.DeeperDelvings;
+import me.pajic.deeper_delvings.worldgen.ore.OreSizeScaling;
+import me.pajic.deeper_delvings.worldgen.spawnrate.SpawnRateMultipliers;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.Identifier;
 
+@SuppressWarnings({"unchecked", "rawtypes"})
 @Version(version = 1)
 public class ModConfig extends Config {
 
@@ -18,38 +27,63 @@ public class ModConfig extends Config {
 		super(DeeperDelvings.id("config"));
 	}
 
-	public Content content = new Content();
-	public Worldgen worldgen = new Worldgen();
+    @RequiresAction(action = Action.RESTART)
+    public ValidatedBoolean deepslateMineshaftVariant = new ValidatedBoolean();
+    @RequiresAction(action = Action.RESTART)
+    public ValidatedBoolean netherMineshafts = new ValidatedBoolean();
+    @RequiresAction(action = Action.RESTART)
+    public ValidatedBoolean deepslateDungeonVariant = new ValidatedBoolean();
+    public BonusChests bonusChests = new BonusChests();
+	public OreSizeMultipliers oreSizeMultipliers = new OreSizeMultipliers();
+	public StructureSpawnMultipliers structureSpawnMultipliers = new StructureSpawnMultipliers();
+	public ModIntegration modIntegration = new ModIntegration();
 	public Misc misc = new Misc();
 
-	public static class Content extends ConfigSection {
-		@RequiresAction(action = Action.RESTART)
-		public ValidatedBoolean mossyDeepslateSet = new ValidatedBoolean(true);
-		@RequiresAction(action = Action.RESTART)
-		public ValidatedBoolean fierySpider = new ValidatedBoolean(true);
+    public static class BonusChests extends ConfigSection {
+        public ValidatedBoolean mansionChests = new ValidatedBoolean(false);
+        public ValidatedFloat mansionChance = ConfigUtil.steppedFloat(0.0039F, 0.01F, 0F, 0.0001F, "0.####");
+        public ValidatedBoolean monumentChests = new ValidatedBoolean(false);
+        public ValidatedFloat monumentChance = ConfigUtil.steppedFloat(0.0025F, 0.01F, 0F, 0.0001F, "0.####");
+    }
+
+	public static class OreSizeMultipliers extends ConfigSection {
+        public ValidatedFloat minMult = ConfigUtil.steppedFloat(1F, 2F, 0.1F, 0.05F, "0.##");
+        public ValidatedFloat maxMult = ConfigUtil.steppedFloat(1F, 2F, 0.1F, 0.05F, "0.##");
+        public ValidatedInt multMaxY = new ValidatedInt(192, 384, -64);
+        public ValidatedInt multMidY = new ValidatedInt(96, 384, -64);
+        public ValidatedInt multMinY = new ValidatedInt(0, 384, -64);
+        public ValidatedMap<Identifier, OreSizeOverride> overrides = (new ValidatedMap.Builder())
+                .keyHandler(ConfigUtil.suggestingIdentifier(Identifier.withDefaultNamespace("iron_ore"), OreSizeScaling::suggestions))
+                .valueHandler(new ValidatedAny<>(new OreSizeOverride()))
+                .build();
 	}
 
-	public static class Worldgen extends ConfigSection {
-		public ValidatedFloat dungeonChanceMult = new ValidatedFloat(1.3F);
-		public ValidatedFloat mineshaftChanceMult = new ValidatedFloat(1.2F);
-		public ValidatedFloat oreSizeMinMult = new ValidatedFloat(0.8F);
-		public ValidatedFloat oreSizeMaxMult = new ValidatedFloat(1.2F);
-		public ValidatedInt oreSizeMultMaxY = new ValidatedInt(192);
-		public ValidatedInt oreSizeMultMidY = new ValidatedInt(96);
-		public ValidatedInt oreSizeMultMinY = new ValidatedInt(0);
-		public ValidatedBoolean deepslateDungeonVariant = new ValidatedBoolean(true);
+	public static class StructureSpawnMultipliers extends ConfigSection {
+        public ValidatedFloat dungeonChanceMult = ConfigUtil.steppedFloat(1F, 2F, 0.1F, 0.05F, "0.##");
+        public ValidatedMap<Identifier, SpawnMultiplierOverride> dungeonChanceOverrides = (new ValidatedMap.Builder())
+                .keyHandler(ConfigUtil.suggestingIdentifier(Identifier.withDefaultNamespace("monster_room"), ValidatedIdentifier.ofDynamicKey(
+                        Registries.PLACED_FEATURE, "deeper_delvings_dungeon_variants", (id, feature) -> SpawnRateMultipliers.isDungeon(feature.value())
+                ).getAllowableIds()::get))
+                .valueHandler(new ValidatedAny<>(new SpawnMultiplierOverride()))
+                .build();
+        public ValidatedFloat mineshaftChanceMult = ConfigUtil.steppedFloat(1F, 2F, 0.1F, 0.05F, "0.##");
+        public ValidatedMap<Identifier, SpawnMultiplierOverride> mineshaftChanceOverrides = (new ValidatedMap.Builder())
+                .keyHandler(ConfigUtil.suggestingIdentifier(Identifier.withDefaultNamespace("mineshafts"), ValidatedIdentifier.ofDynamicKey(
+                        Registries.STRUCTURE_SET, "deeper_delvings_mineshaft_variants", (id, set) -> SpawnRateMultipliers.isMineshaftSet(set.value())
+                ).getAllowableIds()::get))
+                .valueHandler(new ValidatedAny<>(new SpawnMultiplierOverride()))
+                .build();
+	}
+
+	public static class ModIntegration extends ConfigSection {
 		@RequiresAction(action = Action.RESTART)
-		public ValidatedBoolean deepslateMineshaftVariant = new ValidatedBoolean(true);
-		@RequiresAction(action = Action.RESTART)
-		public ValidatedBoolean netherMineshafts = new ValidatedBoolean(true);
-		public ValidatedBoolean addRandomChestsToMansions = new ValidatedBoolean(true);
-		public ValidatedFloat mansionRandomChestChance = new ValidatedFloat(0.0039F, 1.0F, 0F, ValidatedNumber.WidgetType.TEXTBOX);
-		public ValidatedBoolean addRandomChestsToMonuments = new ValidatedBoolean(true);
-		public ValidatedFloat monumentRandomChestChance = new ValidatedFloat(0.0025F, 1.0F, 0F, ValidatedNumber.WidgetType.TEXTBOX);
+		public ValidatedList<Identifier> fierySpiderBiomes = ConfigUtil.suggestingIdentifier(
+				Identifier.fromNamespaceAndPath("clifftree", "inferno"),
+				ValidatedIdentifier.ofDynamicKey(Registries.BIOME, "deeper_delvings_biomes", (id, biome) -> true).getAllowableIds()::get
+		).toList(Identifier.fromNamespaceAndPath("clifftree", "inferno"));
 	}
 
 	public static class Misc extends ConfigSection {
-		@RequiresAction(action = Action.RESTART)
-		public ValidatedInt caveAmbientSoundFrequency = new ValidatedInt(800, Integer.MAX_VALUE, 0);
+		public ValidatedInt caveAmbientSoundFrequency = new ValidatedInt(6000, 12000, 200, ValidatedNumber.WidgetType.TEXTBOX);
 	}
 }

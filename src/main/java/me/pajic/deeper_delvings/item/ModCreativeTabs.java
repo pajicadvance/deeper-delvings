@@ -1,6 +1,6 @@
 package me.pajic.deeper_delvings.item;
 
-import me.pajic.deeper_delvings.DeeperDelvings;
+import me.pajic.deeper_delvings.ModFeatures;
 import me.pajic.deeper_delvings.block.ModBlocks;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.CreativeModeTab;
@@ -17,7 +17,7 @@ public class ModCreativeTabs {
 
     public static List<Insertion> getInsertions() {
         List<Insertion> insertions = new ArrayList<>();
-        if (DeeperDelvings.CONFIG.content.mossyDeepslateSet.get()) {
+        if (ModFeatures.mossyDeepslateSet()) {
             insertions.add(new Insertion(
                     CreativeModeTabs.BUILDING_BLOCKS, Items.COBBLED_DEEPSLATE_WALL, blockItems(
                             ModBlocks.MOSSY_COBBLED_DEEPSLATE, ModBlocks.MOSSY_COBBLED_DEEPSLATE_STAIRS,
@@ -34,7 +34,7 @@ public class ModCreativeTabs {
                     CreativeModeTabs.FUNCTIONAL_BLOCKS, Items.INFESTED_DEEPSLATE, blockItems(ModBlocks.INFESTED_MOSSY_DEEPSLATE_BRICKS)
             ));
         }
-        if (DeeperDelvings.CONFIG.content.fierySpider.get()) {
+        if (ModFeatures.fierySpider()) {
             insertions.add(new Insertion(
                     CreativeModeTabs.SPAWN_EGGS, Items.CAVE_SPIDER_SPAWN_EGG, List.of(ModItems.FIERY_SPIDER_SPAWN_EGG)
             ));

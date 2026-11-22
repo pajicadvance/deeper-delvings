@@ -1,7 +1,7 @@
 package me.pajic.deeper_delvings.util;
 
 import com.mojang.datafixers.util.Either;
-import me.pajic.deeper_delvings.mixin.worldgen.MineShaftPieceAccessor;
+import me.pajic.deeper_delvings.mixin.worldgen.mineshaft.MineShaftPieceAccessor;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.SectionPos;
@@ -10,8 +10,8 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.LadderBlock;
 import net.minecraft.world.level.block.ChestBlock;
+import net.minecraft.world.level.block.LadderBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.ChestBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
@@ -46,9 +46,10 @@ public class StructureGenUtil {
     private static final int LAVA_POOL_MIN_DEPTH = 3;
 
     public static boolean isDeepslateMineshaftPiece(StructurePiece piece) {
-        return piece instanceof MineShaftPieceAccessor accessor && accessor.ac$getType() == DEEPSLATE_MINESHAFT_TYPE;
+        return piece instanceof MineShaftPieceAccessor accessor && accessor.dd$getType() == DEEPSLATE_MINESHAFT_TYPE;
     }
 
+    @SuppressWarnings("OptionalUsedAsFieldOrParameterType")
     public static Optional<Structure.GenerationStub> keepPiecesBelow(Optional<Structure.GenerationStub> generationStub, int y) {
         return generationStub.map(stub -> {
             StructurePiecesBuilder kept = new StructurePiecesBuilder();
@@ -64,11 +65,11 @@ public class StructureGenUtil {
     }
 
     public static boolean isCrimsonMineshaftPiece(StructurePiece piece) {
-        return piece instanceof MineShaftPieceAccessor accessor && accessor.ac$getType() == CRIMSON_MINESHAFT_TYPE;
+        return piece instanceof MineShaftPieceAccessor accessor && accessor.dd$getType() == CRIMSON_MINESHAFT_TYPE;
     }
 
     public static boolean isWarpedMineshaftPiece(StructurePiece piece) {
-        return piece instanceof MineShaftPieceAccessor accessor && accessor.ac$getType() == WARPED_MINESHAFT_TYPE;
+        return piece instanceof MineShaftPieceAccessor accessor && accessor.dd$getType() == WARPED_MINESHAFT_TYPE;
     }
 
     public static void placeLavaPoolShaft(WorldGenLevel level, BoundingBox chunkBB, BoundingBox roomBB, BlockState pillar) {

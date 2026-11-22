@@ -146,6 +146,9 @@ fletchingTable {
 
 tasks {
     processResources {
+        val dataVersion = if (sc.current.parsed >= "26.3") "26.3" else "26.1"
+        from(rootProject.file("src/main/versioned/$dataVersion"))
+
         fun MutableMap<String, String>.register(key: String, property: String) {
             val value: String = sc.properties[property]
             inputs.property(key, value)

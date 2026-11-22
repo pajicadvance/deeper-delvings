@@ -1,7 +1,0 @@
-{
-  "type": "deeper_delvings:nether_mineshaft",
-  "biomes": "minecraft:crimson_forest",
-  "variant": "crimson",
-  "spawn_overrides": {},
-  "step": "underground_structures"
-}

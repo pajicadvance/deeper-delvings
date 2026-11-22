@@ -10,7 +10,7 @@ import org.spongepowered.asm.mixin.gen.Invoker;
 public interface StairBlockAccessor {
 
     @Invoker("<init>")
-    static StairBlock ac$create(BlockState baseState, BlockBehaviour.Properties properties) {
+    static StairBlock dd$callInit(BlockState baseState, BlockBehaviour.Properties properties) {
         throw new AssertionError();
     }
 }

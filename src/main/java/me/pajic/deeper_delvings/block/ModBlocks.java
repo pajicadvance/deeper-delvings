@@ -25,7 +25,7 @@ public class ModBlocks {
     );
     public static final Block MOSSY_COBBLED_DEEPSLATE_STAIRS = create(
             "mossy_cobbled_deepslate_stairs",
-            properties -> StairBlockAccessor.ac$create(MOSSY_COBBLED_DEEPSLATE.defaultBlockState(), properties),
+            properties -> StairBlockAccessor.dd$callInit(MOSSY_COBBLED_DEEPSLATE.defaultBlockState(), properties),
             Blocks.COBBLED_DEEPSLATE_STAIRS
     );
     public static final Block MOSSY_COBBLED_DEEPSLATE_SLAB = create(
@@ -39,7 +39,7 @@ public class ModBlocks {
     );
     public static final Block MOSSY_DEEPSLATE_BRICK_STAIRS = create(
             "mossy_deepslate_brick_stairs",
-            properties -> StairBlockAccessor.ac$create(MOSSY_DEEPSLATE_BRICKS.defaultBlockState(), properties),
+            properties -> StairBlockAccessor.dd$callInit(MOSSY_DEEPSLATE_BRICKS.defaultBlockState(), properties),
             Blocks.DEEPSLATE_BRICK_STAIRS
     );
     public static final Block MOSSY_DEEPSLATE_BRICK_SLAB = create(

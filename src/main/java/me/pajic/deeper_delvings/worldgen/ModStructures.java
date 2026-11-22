@@ -1,6 +1,8 @@
 package me.pajic.deeper_delvings.worldgen;
 
 import me.pajic.deeper_delvings.DeeperDelvings;
+import me.pajic.deeper_delvings.worldgen.mineshaft.DeepslateMineshaftStructure;
+import me.pajic.deeper_delvings.worldgen.mineshaft.NetherMineshaftStructure;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.levelgen.structure.Structure;

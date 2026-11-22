@@ -1,0 +1,27 @@
+{
+  "type": "deeper_delvings:nether_mineshaft",
+  "biomes": "minecraft:crimson_forest",
+  "variant": "crimson",
+  "spawn_overrides": {
+    "monster": {
+      "bounding_box": "piece",
+      "spawns": [
+        {
+          "type": "minecraft:piglin",
+          "maxCount": 1,
+          "minCount": 1,
+          "weight": 1
+        }
+      ]
+    },
+    "creature": {
+      "bounding_box": "piece",
+      "spawns": []
+    },
+    "ambient": {
+      "bounding_box": "piece",
+      "spawns": []
+    }
+  },
+  "step": "underground_structures"
+}

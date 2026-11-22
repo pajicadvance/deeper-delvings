@@ -13,11 +13,11 @@ import org.spongepowered.asm.mixin.gen.Invoker;
 public interface StructurePieceAccessor {
 
     @Invoker("getWorldPos")
-    BlockPos.MutableBlockPos ac$getWorldPos(int x, int y, int z);
+    BlockPos.MutableBlockPos dd$callGetWorldPos(int x, int y, int z);
 
     @Invoker("placeBlock")
-    void ac$placeBlock(WorldGenLevel level, BlockState state, int x, int y, int z, BoundingBox chunkBB);
+    void dd$callPlaceBlock(WorldGenLevel level, BlockState state, int x, int y, int z, BoundingBox chunkBB);
 
     @Invoker("getBlock")
-    BlockState ac$getBlock(BlockGetter level, int x, int y, int z, BoundingBox chunkBB);
+    BlockState dd$callGetBlock(BlockGetter level, int x, int y, int z, BoundingBox chunkBB);
 }

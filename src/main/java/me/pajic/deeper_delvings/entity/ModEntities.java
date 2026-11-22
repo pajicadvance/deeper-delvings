@@ -2,12 +2,10 @@ package me.pajic.deeper_delvings.entity;
 
 import me.pajic.deeper_delvings.DeeperDelvings;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
-import net.minecraft.world.level.biome.Biome;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -16,8 +14,6 @@ import java.util.function.BiConsumer;
 public class ModEntities {
 
     private static final Map<ResourceKey<EntityType<?>>, EntityType<?>> ENTITY_TYPES = new LinkedHashMap<>();
-
-    public static final ResourceKey<Biome> INFERNO = ResourceKey.create(Registries.BIOME, Identifier.fromNamespaceAndPath("clifftree", "inferno"));
 
     public static final EntityType<FierySpider> FIERY_SPIDER = create(
             "fiery_spider",
